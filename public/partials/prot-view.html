@@ -1,0 +1,58 @@
+<h1>Barclays Premier League</h1>
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<highchart id="chart1" config="chartConfig"></highchart>
+<script type="text/javascript">
+	$(function () {
+	    $('#container').highcharts({
+	        chart: {
+	            plotBackgroundColor: null,
+	            plotBorderWidth: null,
+	            plotShadow: false,
+	            type: 'pie'
+	        },
+	        title: {
+	            text: 'Quantidade de gols por jogo - Premier League 2015/2016'
+	        },
+	        tooltip: {
+	            headerFormat: '',
+	            pointFormat: '{point.name}: <b>{point.y:.0f}</b>'
+	        },
+	        plotOptions: {
+	            pie: {
+	                allowPointSelect: true,
+	                cursor: 'pointer',
+	                dataLabels: {
+	                    enabled: true,
+	                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+	                    style: {
+	                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+	                    }
+	                }
+	            }
+	        },
+	        series: [{
+	            name: 'Quantidade de gols',
+	            colorByPoint: true,
+	            data: [{
+	                name: '1 gol',
+	                y: 56
+	            }, {
+	                name: '2 gols',
+	                y: 24
+	            }, {
+	                name: '3 gols',
+	                y: 10
+	            }, {
+	                name: '4 gols',
+	                y: 4
+	            }, {
+	                name: '5 gols',
+	                y: 1
+	            }, {
+	                name: '6+ gols',
+	                y: 1
+	            }]
+	        }]
+	    });
+	});
+</script>

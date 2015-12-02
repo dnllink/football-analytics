@@ -1,0 +1,25 @@
+{
+  "name": "football-analytics-api",
+  "description": "",
+  "main": "server.js",
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-route": "~1.4.8",
+    "angular-resource": "~1.4.8",
+    "bootstrap": "~3.3.6",
+    "jquery": "~2.1.4",
+    "highcharts": "~4.1.9",
+    "highcharts-ng": "~0.0.11"
+  }
+}
