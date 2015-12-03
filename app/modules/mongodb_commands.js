@@ -33,29 +33,49 @@ db.resultados.aggregate([{
 
 // gols em casa 
 db.resultados.aggregate([{
-    $group: {
-        _id: '$team1.name',
-        GF: {
-            $sum: '$score1'
+    $match: {
+        score1: {
+            $ne: null
         },
-        GA: {
-            $sum: '$score2'
-        },
-        GD: {
-            $sum: {
-                $subtract: ['$score1', '$score2']
-            }
+        score2: {
+            $ne: null
         }
-
     }
+},
+$group: {
+    _id: '$team1.name',
+    GF: {
+        $sum: '$score1'
+    },
+    GA: {
+        $sum: '$score2'
+    },
+    GD: {
+        $sum: {
+            $subtract: ['$score1', '$score2']
+        }
+    },
+    PG: {
+        $sum: 1
+    }
+}
 }, {
-    $sort: {
-        GD: -1
-    }
+$sort: {
+    GD: -1
+}
 }]);
 
 // gols fora
 db.resultados.aggregate([{
+    $match: {
+        score1: {
+            $ne: null
+        },
+        score2: {
+            $ne: null
+        }
+    }
+}, {
     $group: {
         _id: '$team2.name',
         GF: {
@@ -68,8 +88,10 @@ db.resultados.aggregate([{
             $sum: {
                 $subtract: ['$score2', '$score1']
             }
+        },
+        PG: {
+            $sum: 1
         }
-
     }
 }, {
     $sort: {
