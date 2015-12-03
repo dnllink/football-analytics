@@ -13,7 +13,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test',
                 //console.log(results.rounds[c1].matches[c2]);
                 results.rounds[c1].matches[c2].league = {
                     name: 'English Premier League',
-                    code: 'EPL',
+                    code: 'EPL',//
                     season: '2015/2016'
                 };
                 db.collection('resultados').insert(results.rounds[c1].matches[c2], function(erro, contato) {

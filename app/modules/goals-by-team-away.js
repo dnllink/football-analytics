@@ -18,18 +18,25 @@ module.exports = function (callback) {
                 }
 }, {
                 $group: {
-                    _id: {
-                        qtGoals: {
-                            $add: ['$score1', '$score2']
+                    _id: '$team2.name',
+                    GF: {
+                        $sum: '$score2'
+                    },
+                    GA: {
+                        $sum: '$score1'
+                    },
+                    GD: {
+                        $sum: {
+                            $subtract: ['$score2', '$score1']
                         }
                     },
-                    count: {
+                    PG: {
                         $sum: 1
                     }
                 }
 }, {
                 $sort: {
-                    count: -1
+                    GD: -1
                 }
 }], (function (err, docs) {
                 if (erro) throw err;

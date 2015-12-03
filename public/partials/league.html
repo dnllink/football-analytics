@@ -1,39 +1,101 @@
 <h1 class="text-center">Barclays Premier League</h1>
 <div>
-	<highchart id="scoresChart" config="scoresChartConfig"></highchart>
-	<div class="table-responsive">
-	    <table class="table table-hover table-striped table-bordered text-center">
-	        <tr>
-	            <th class="text-center">Placar</th>
-	            <th class="text-center">Ocorrências</th>
-	        </tr>
-	        <tr ng-repeat="score in scores">
-	            <td>
-	                {{score._id.score1}} x {{score._id.score2}}
-	            </td>
-	            <td>
-	                {{score.count}}
-	            </td>
-	        </tr>
-	    </table>
-	</div>
+    <highchart id="scoresChart" config="scoresChartConfig"></highchart>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered text-center">
+            <tr>
+                <th class="text-center">Placar</th>
+                <th class="text-center">Ocorrências</th>
+            </tr>
+            <tr ng-repeat="score in scores">
+                <td>
+                    {{score._id.score1}} x {{score._id.score2}}
+                </td>
+                <td>
+                    {{score.count}}
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 <div>
-	<highchart id="goalsChart" config="goalsChartConfig"></highchart>
-	<div class="table-responsive">
-	    <table class="table table-hover table-striped table-bordered text-center">
-	        <tr>
-	            <th class="text-center">Quantidade de Gols</th>
-	            <th class="text-center">Ocorrências</th>
-	        </tr>
-	        <tr ng-repeat="score in goals">
-	            <td>
-	                {{score._id.qtGoals}}
-	            </td>
-	            <td>
-	                {{score.count}}
-	            </td>
-	        </tr>
-	    </table>
-	</div>
+    <highchart id="goalsChart" config="goalsChartConfig"></highchart>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered text-center">
+            <tr>
+                <th class="text-center">Quantidade de Gols</th>
+                <th class="text-center">Ocorrências</th>
+            </tr>
+            <tr ng-repeat="score in goals">
+                <td>
+                    {{score._id.qtGoals}}
+                </td>
+                <td>
+                    {{score.count}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div>
+    <h2 class="text-center">Jogos em Casa</h2>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered text-center">
+            <tr>
+                <th class="text-center">Time</th>
+                <th class="text-center">GP</th>
+                <th class="text-center">GC</th>
+                <th class="text-center">SG</th>
+                <th class="text-center">J</th>
+            </tr>
+            <tr ng-repeat="score in goalsHome">
+                <td>
+                    {{score._id}}
+                </td>
+                <td>
+                    {{score.GF}}
+                </td>
+                <td>
+                    {{score.GA}}
+                </td>
+                <td>
+                    {{score.GD}}
+                </td>
+                <td>
+                    {{score.PG}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div>
+    <h2 class="text-center">Jogos Fora</h2>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered text-center">
+            <tr>
+                <th class="text-center">Time</th>
+                <th class="text-center">GP</th>
+                <th class="text-center">GC</th>
+                <th class="text-center">SG</th>
+                <th class="text-center">J</th>
+            </tr>
+            <tr ng-repeat="score in goalsAway">
+                <td>
+                    {{score._id}}
+                </td>
+                <td>
+                    {{score.GF}}
+                </td>
+                <td>
+                    {{score.GA}}
+                </td>
+                <td>
+                    {{score.GD}}
+                </td>
+                <td>
+                    {{score.PG}}
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

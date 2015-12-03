@@ -1,4 +1,14 @@
+// resultados exatos
 db.resultados.aggregate([{
+    $match: {
+        score1: {
+            $ne: null
+        },
+        score2: {
+            $ne: null
+        }
+    }
+}, {
     $group: {
         _id: {
             score1: '$score1',
@@ -14,7 +24,17 @@ db.resultados.aggregate([{
     }
 }]);
 
+// gols por jogo
 db.resultados.aggregate([{
+    $match: {
+        score1: {
+            $ne: null
+        },
+        score2: {
+            $ne: null
+        }
+    }
+}, {
     $group: {
         _id: {
             qtGoals: {
@@ -41,28 +61,28 @@ db.resultados.aggregate([{
             $ne: null
         }
     }
-},
-$group: {
-    _id: '$team1.name',
-    GF: {
-        $sum: '$score1'
-    },
-    GA: {
-        $sum: '$score2'
-    },
-    GD: {
-        $sum: {
-            $subtract: ['$score1', '$score2']
-        }
-    },
-    PG: {
-        $sum: 1
-    }
-}
 }, {
-$sort: {
-    GD: -1
-}
+    $group: {
+        _id: '$team1.name',
+        GF: {
+            $sum: '$score1'
+        },
+        GA: {
+            $sum: '$score2'
+        },
+        GD: {
+            $sum: {
+                $subtract: ['$score1', '$score2']
+            }
+        },
+        PG: {
+            $sum: 1
+        }
+    }
+}, {
+    $sort: {
+        GD: -1
+    }
 }]);
 
 // gols fora
