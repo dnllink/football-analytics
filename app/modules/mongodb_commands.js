@@ -118,3 +118,48 @@ db.resultados.aggregate([{
         GD: -1
     }
 }]);
+
+db.resultados.find({'team1.code': 'MUN', winner: {$ne: null}});
+
+// Times
+// Média de gols feitos em casa
+db.resultados.aggregate([{
+    $match: {
+        'team1.code': 'MUN',
+        winner: {$ne: null}
+        }
+}, {
+    $group: {
+        _id: null,
+        avgGoals: {
+            $avg: '$score1'
+        }
+    }
+}]);
+
+// Média de gols sofridos em casa
+db.resultados.aggregate([{
+    $match: {
+        'team1.code': 'MUN',
+        winner: {$ne: null}
+        }
+}, {
+    $group: {
+        _id: null,
+        avgGoals: {
+            $avg: '$score2'
+        }
+    }
+}]);
+
+// Ultimos 5 resultados em casa
+db.resultados.find({'team1.code': 'MUN', winner: {$ne: null}}).sort({date: -1});
+
+// Ultimos 5 resultados fora 
+db.resultados.find({'team2.code': 'MUN', winner: {$ne: null}}).sort({date: -1});
+
+// Ultimos 5 resultados gerais
+db.resultados.find({$or: [{'team1.code': 'MUN'}, {'team2.code': 'MUN'}], winner: {$ne: null}}).sort({date: -1}).limit(5);
+
+// Proximos 3 jogos
+db.resultados.find({$or: [{'team1.code': 'MUN'}, {'team2.code': 'MUN'}], winner: {$eq: null}}).sort({date: 1}).limit(3);

@@ -1,9 +1,9 @@
 var MongoClient = require('mongodb').MongoClient;
-var results = require("./en.1.json");
+var results = require("../../../football.json/2015-16/en.1.json");
 var count = 0;
 
 MongoClient.connect('mongodb://127.0.0.1:27017/test',
-    function(erro, db) {
+    function (erro, db) {
 
         if (erro) throw err;
 
@@ -27,7 +27,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test',
                     winner = null;
                 };
                 results.rounds[c1].matches[c2].winner = winner;
-                db.collection('resultados').insert(results.rounds[c1].matches[c2], function(erro, contato) {
+                db.collection('resultados').insert(results.rounds[c1].matches[c2], function (erro, contato) {
                     if (erro) throw err;
                     console.log(contato);
                     count = count + 1;
